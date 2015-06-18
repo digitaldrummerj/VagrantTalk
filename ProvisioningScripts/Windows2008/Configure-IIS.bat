@@ -1,0 +1,9 @@
+ServerManagerCmd.exe -install Web-Server
+ServerManagerCmd.exe -install Web-ASP-Net
+ServerManagerCmd.exe -install Web-Net-Ext
+ServerManagerCmd.exe -install Web-Filtering
+ServerManagerCmd.exe -install Web-ISAPI-Filter
+ServerManagerCmd.exe -install Web-ISAPI-Ext
+ServerManagerCmd.exe -install NET-HTTP-Activation
+ServerManagerCmd.exe -install Web-Windows-Auth
+ServerManagerCmd.exe -install MSMQ

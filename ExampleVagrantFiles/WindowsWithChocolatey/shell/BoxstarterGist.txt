@@ -1,0 +1,86 @@
+
+# *****************
+# BoxStarter Windows Configuration
+# *****************
+Enable-RemoteDesktop
+
+Set-CornerNavigationOptions -EnableUsePowerShellOnWinX
+
+Set-ExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitlebar
+
+Set-TaskbarOptions -Size Small -Lock
+
+# *****************
+# Turn off Chocolatey Confirmation Prompt before installing
+# *****************
+chocolatey feature enable -n=allowGlobalConfirmation
+
+
+# *****************
+# Install Chocolatey Packages
+# *****************
+choco install git
+choco install nodejs
+choco install visualstudiocode
+choco install GoogleChrome
+
+# *****************
+# Turn on Chocolatey Confirmation Prompt before installing
+# *****************
+chocolatey feature disable -n=allowGlobalConfirmation
+
+
+# *****************
+# Pin Items to Task Bar
+# *****************
+Install-ChocolateyPinnedTaskBarItem "${env:SystemRoot}\system32\WindowsPowerShell\v1.0\powershell_ise.exe" 
+Install-ChocolateyPinnedTaskBarItem "${env:UserProfile}\Desktop\code.lnk"
+Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe"
+
+# *****************
+# Configuration NPM
+# *****************
+npm config set loglevel http
+npm config set spin false
+
+# *****************
+# Install NPM Global Packages
+# ***************** 
+npm install -g ionic
+npm install -g cordova
+
+# *****************
+# Verify Versions
+# *****************
+ionic -v
+ionic info
+cordova -v
+
+
+# *****************
+# Copy Visual Studio Code Settings Files
+# *****************
+
+$vsCodeDir = "${env:appdata}\Code"
+
+If ((Test-Path $vsCodeDir)) {
+	cp "${env:temp}\VisualStudioCode_keybinding.json" "$vsCodeDir\keybinding.json"
+	
+	cp "${env:temp}\VisualStudioCode_UserSettings.json" "$vsCodeDir\usersettings.json"
+}
+else {  
+   Write-Host "Error: Visual Studio Code Directory, $vsCodeDir is missing"
+}
+
+# *****************
+# Git Clone Projects
+# *****************
+$projectDir = "${env:systemdrive}\projects"
+
+If (!(Test-Path $projectDir)) {
+	New-Item -Path $projectDir -ItemType Directory
+}
+
+cd $projectDir
+
+git clone https://github.com/digitaldrummerj/VagrantTalk.git 

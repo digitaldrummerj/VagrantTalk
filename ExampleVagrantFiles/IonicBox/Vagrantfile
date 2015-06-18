@@ -1,0 +1,27 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "drifty/ionic-android"
+  config.vm.hostname = "ionic"
+  config.vm.boot_timeout = 600
+
+  #Ionic Default Web Server Port
+   config.vm.network "forwarded_port", guest: 8100, host: 8100, id: "ionic serve"
+   
+   #Default Live Reload Port
+   config.vm.network "forwarded_port", guest: 35729, host: 35729, id: "ionic live reload"
+
+  config.vm.synced_folder "c:\\projects\\IonicProjects", "/home/vagrant/projects"
+
+   config.vm.provider "virtualbox" do |vb|
+     vb.gui = false
+     vb.customize ["modifyvm", :id, "--usb", "on"]
+     
+     #Need for Windows Machines
+     vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/home_vagrant_ionicprojects", "1"]
+     vb.memory = "1024"
+     vb.cpus = 2
+     vb.name = "IonicBox"
+  end
+end

@@ -1,0 +1,24 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure(2) do |config|
+  config.vm.hostname = "TestMachine"
+  config.vm.box = "opentable/win-8.1-enterprise-amd64-nocm"
+  config.vm.boot_timeout = 600
+  config.vm.communicator = "winrm"
+  config.vm.network :forwarded_port, guest:5985, host:22000, auto_correct: true
+  config.vm.provider "virtualbox" do |vb|
+	 vb.gui = true
+	 vb.customize ["modifyvm", :id, "--vram", "128"]
+	 vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+	 vb.customize ["modifyvm", :id, "--monitorcount", "1"]
+	 vb.memory = 4096
+	 vb.cpus = 2	 
+      
+	 vb.name = "Test Machine"
+   end
+end

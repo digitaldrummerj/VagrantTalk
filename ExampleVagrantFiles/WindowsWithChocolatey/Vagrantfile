@@ -1,0 +1,47 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+if  !Vagrant.has_plugin?("vagrant-reload")
+     if  !Vagrant.has_plugin?("vagrant-reload")
+     	system('vagrant plugin install vagrant-reload')     
+     end
+     
+     raise("Missing Plugins installed. Run command again.");
+end
+
+Vagrant.configure(2) do |config|
+     # Every Vagrant development environment requires a box. You can search for
+     # boxes at https://atlas.hashicorp.com/search.
+     config.vm.box = "opentable/win-8.1-enterprise-amd64-nocm"
+     config.vm.hostname = "VagrantTest"
+     config.vm.boot_timeout = 600
+     config.vm.communicator = "winrm"
+     
+     # config.vm.network "forwarded_port", guest: 80, host: 8080
+         
+     # Share an additional folder to the guest VM. The first argument is
+     # the path on the host to the actual folder. The second argument is
+     # the path on the guest to mount the folder. And the optional third
+     # argument is a set of non-required options.
+     # config.vm.synced_folder "../data", "/vagrant_data"
+     
+     config.vm.provider "virtualbox" do |vb|
+          vb.gui = true
+          vb.memory = "4096"
+          vb.cpus = 2
+          vb.customize ["modifyvm", :id, "--vram", "128"]
+          vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+          vb.customize ["modifyvm", :id, "--usb", "on"]
+          vb.customize ["modifyvm", :id, "--monitorcount", "1"]
+          vb.name = "Test Machine"   
+     end
+     
+     # PROVISIONING
+     config.vm.provision :shell, path: "shell/main.cmd" 
+     config.vm.provision :shell, path: "shell/InstallBoxStarter.bat"     
+     config.vm.provision "file", source: "shell/RunBoxStarterGist.bat", destination: "desktop\\RunBoxStarterGist.bat"     
+
+     if Vagrant.has_plugin?("vagrant-reload")
+          config.vm.provision :reload     
+     end     
+end

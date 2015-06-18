@@ -1,0 +1,59 @@
+{
+  "nodes": {
+    "puppet.example.com": {
+      ":box": "ubuntu/trusty64",
+      ":ip": "192.168.32.5",        
+      "ports": [],
+      ":memory": 2048,
+	  ":communicator": "ssh",	  
+       ":showGui": false,
+      ":bootstrap": "bootstrap-master.sh",
+        ":cpus": "2",
+        "sharedFolders": []
+    },
+    "node01.example.com": {
+      ":box": "ubuntu/trusty64",
+      ":ip": "192.168.32.10",
+      "ports": [],
+      ":memory": 1024,
+        ":showGui": false,
+		":communicator": "ssh",
+      ":bootstrap": "bootstrap-node.sh",
+        ":cpus": "2",
+        "sharedFolders": []
+    },
+    "node02.example.com": {
+    ":box": "ubuntu/trusty64",
+      ":ip": "192.168.32.20",
+      "ports": [],
+      ":memory": 1024,
+      ":showGui": false,
+	  ":communicator": "ssh",
+      ":bootstrap": "bootstrap-node.sh",
+      ":cpus": "2",
+      "sharedFolders": []
+    },
+      "node03": {
+      ":box": "opentable/win-2012r2-datacenter-amd64-nocm",
+      ":ip": "192.168.32.30",
+      "ports": [{
+			":host": "5389",
+			":guest": "3389",
+			":id": "RDP",
+			":autocorrect": true
+	  }],
+      ":cpus": "2",
+      ":memory": 4096,
+      ":showGui": true,
+      ":bootstrap": "bootstrap-windows.bat",
+	  ":communicator": "winrm",
+      "sharedFolders": [              
+	      {
+                    ":hostLocation": ".",
+                    ":guestLocation": "/scripts"
+              }
+             
+          ]
+		}
+	}
+}
