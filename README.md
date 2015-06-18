@@ -20,8 +20,6 @@ The slides are available at [http://slides.com/digitaldrummerj/devopsyourself-nd
 		* Basic Windows 8.1 machine with no additional software installed as part of creating it.
 	* [**WindowsWithChocolatey:**](https://github.com/digitaldrummerj/VagrantTalk/tree/NdcOslo/ExampleVagrantFiles/WindowsWithChocolatey)
 		* Windows 8.1 Enterprise machine that installs Chocolatey, Boxstarter and run a Boxstarter package as part of the provisioning process.
-	* [**WindowsWithChocolateyFullyOffline:**](https://github.com/digitaldrummerj/VagrantTalk/tree/NdcOslo/ExampleVagrantFiles/WindowsWithChocolateyFullyOffline)
-		* Same as WindowsWithChocolatey machine except that all of the installs and packages have been modified to pull everything from the offline folder.  This is useful for doing demos when internet connection is not working or is slow.  Not recommended for anything besides demos.   
 		 
 * **PackagingScripts**
 	* Holds scripts that useful for packaging up a VM like turning on WinRM, disabling firewall, setting powershell execution policy, etc
