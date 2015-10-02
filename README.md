@@ -35,9 +35,3 @@ I have a series of blog post that go through explains how Vagrant works, install
 1. [Provisioning with Chocolatey](http://digitaldrummerj.me/vagrant-provisioning-with-chocolatey)
 1. [Installing BoxStarter](http://digitaldrummerj.me/vagrant-installing-boxstarter)
 1. [Installing All of the Your Software](http://digitaldrummerj.me/vagrant-installing-your-software)
-
-Future Blog Post:
-1. [Network Options](http://digitaldrummerj.me/vagrant-networking-options)
-1. [Multiple Machines](http://digitaldrummerj.me/vagrant-multiple-machines)
-1. [Azure Virtual Machines](http://digitaldrummerj.me/vagrant-azure-machines)
-1. [Creating Your Own Base Boxes](http://digitaldrummerj.me/vagrant-create-your-own-base-boxes)
